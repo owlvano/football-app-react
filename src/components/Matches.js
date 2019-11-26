@@ -1,7 +1,7 @@
 import React from 'react';
-import { useParams } from "react-router";
-import { getMatchesData } from '../data/footballApi';
+import { getMatchesData, WINNER } from '../data/footballApi';
 import { ErrorComponent, LoadingComponent } from './Helpers';
+
 
 export class MatchesContainer extends React.Component {
     constructor(props) {
@@ -69,11 +69,21 @@ const MatchItem = props => {
                 { match.score &&
                     <div>
                         <li>Score: { match.score.fullTime.homeTeam } - { match.score.fullTime.awayTeam }</li>
-                        <li>Winner: { match.score.winner }</li>
+                        <li>Winner: { MatchWinner(match) }</li>
                     </div>
                 }
-                <li>Date: { match.utcDate }</li>
+                <li>Date: <Moment parse="YYYY-MM-DDTHH:mmZ" format="DD/MM/YYYY" date={match.utcDate} /></li>
             </ul>
         </li>
     );
+}
+
+const MatchWinner = (match) => {
+    const winner = match.score.winner;
+    switch(winner) { 
+        case WINNER.homeTeam:  return match.homeTeam.name;
+        case WINNER.awayTeam: return match.awayTeam.name;
+        case WINNER.draw: return 'Draw';
+        default: return 'Undetermined';
+    }
 }
