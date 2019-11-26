@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorComponent } from './Error';
-import { HEADERS } from '../data/headers';
+import { getCompetitions } from '../data/footballApi';
 
 
 export class CompetitionsContainer extends React.Component {
@@ -14,12 +14,7 @@ export class CompetitionsContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.football-data.org/v2/competitions/", {
-            crossDomain: true,
-            method: 'GET',
-            headers: HEADERS
-        })
-        .then(res => res.json())
+        getCompetitions()
         .then(
             (result) => {
                 this.setState({
