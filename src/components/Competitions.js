@@ -16,10 +16,11 @@ export class CompetitionsContainer extends React.Component {
     componentDidMount() {
         getCompetitions()
         .then(
-            (result) => {
+            (competitions) => {
+                console.log(competitions);
                 this.setState({
                     isLoaded: true,
-                    competitions: result.competitions
+                    competitions: competitions
                 });
             },
             // Note: it's important to handle errors here
@@ -54,12 +55,12 @@ export class CompetitionsContainer extends React.Component {
 const CompetitionsList = props => {
     const competitions = props.competitions;
     const listItems = competitions.map(
-        (competition, i) => <CompetitionRow key={i} competition={competition} />
+        (competition, i) => <CompetitionItem key={i} competition={competition} />
     );
     return <ul>{listItems}</ul>;
 } 
 
-const CompetitionRow = props => {
+const CompetitionItem = props => {
     const competition = props.competition;
     return (
         <li>
