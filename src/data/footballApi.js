@@ -10,3 +10,7 @@ export const getCompetitions = () =>
     axios.get(API_URL + "competitions/", { headers: HEADERS })
     .then(response => response.data.competitions)
     .then(competitions => competitions.filter(competition => COMPETITION_IDS.includes(competition.id)));
+
+export const getMatchesData = (id) =>  
+    axios.get(API_URL + `competitions/${id}/matches`, { headers: HEADERS })
+    .then(response => response.data);

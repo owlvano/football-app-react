@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { ErrorComponent, LoadingComponent } from './Helpers';
 import { getCompetitions } from '../data/footballApi';
 
@@ -22,9 +23,6 @@ export class CompetitionsContainer extends React.Component {
                     competitions: competitions
                 });
             },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
             (error) => {
                 this.setState({
                     isLoaded: true,
@@ -67,7 +65,9 @@ const CompetitionItem = props => {
     const competition = props.competition;
     return (
         <li>
-            <a className="title">{ competition.name }</a>
+            <Link className="title" to={`/competitions/${competition.id}/matches`}>
+                  { competition.name }
+            </Link>
             <ul>
                 { competition.area &&
                     <li>Area: { competition.area.name }</li>
