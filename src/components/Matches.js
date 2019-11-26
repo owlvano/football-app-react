@@ -63,13 +63,16 @@ const MatchesList = props => {
 
 const MatchItem = props => {
     const match = props.match;
+    const fullTime = match.score.fullTime;
     return (
         <li>
             <ul>
                 <li id="title">{ match.homeTeam.name } vs. { match.awayTeam.name }</li>
                 { match.score &&
                     <div>
-                        <li>Score: { match.score.fullTime.homeTeam } - { match.score.fullTime.awayTeam }</li>
+                        {fullTime && fullTime.homeTeam && fullTime.awayTeam &&
+                            <li>Score: { fullTime.homeTeam } - { fullTime.awayTeam }</li>
+                        }
                         <li>Winner: { MatchWinner(match) }</li>
                     </div>
                 }
