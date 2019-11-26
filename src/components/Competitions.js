@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorComponent } from './Error';
+import { ErrorComponent, LoadingComponent } from './Helpers';
 import { getCompetitions } from '../data/footballApi';
 
 
@@ -37,18 +37,16 @@ export class CompetitionsContainer extends React.Component {
 
     render() {
         const { error, isLoaded, competitions } = this.state;
-        if (error) {
-            return <ErrorComponent error={error} />;
-        } else if (!isLoaded) {
-            return <div id="content"><h1>Loading...</h1></div>;
-        } else {
-            return (
+        return (
+            error ? <ErrorComponent error={error} /> :
+            !isLoaded ? <LoadingComponent /> : (
                 <div id="content">
                     <h1>Competitions</h1>
                     <CompetitionsList competitions={competitions}/>
                 </div>
-            );
-        }
+            )
+        ); 
+
     }
 }
 

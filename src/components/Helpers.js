@@ -6,3 +6,4 @@ export const ErrorComponent = props => (
     </div>
 );
 
+export const LoadingComponent = props => <div id="content"><h1>Loading...</h1></div>;;
