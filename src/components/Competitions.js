@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorComponent, handleError } from './Error';
+import { ErrorComponent } from './Error';
 import { HEADERS } from '../data/headers';
 
 
@@ -20,7 +20,6 @@ export class CompetitionsContainer extends React.Component {
             headers: HEADERS
         })
         .then(res => res.json())
-        .then(handleError)
         .then(
             (result) => {
                 this.setState({
@@ -34,7 +33,7 @@ export class CompetitionsContainer extends React.Component {
             (error) => {
                 this.setState({
                     isLoaded: true,
-                    error: error
+                    error
                 });
             }
         )
