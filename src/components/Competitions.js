@@ -17,7 +17,6 @@ export class CompetitionsContainer extends React.Component {
         getCompetitions()
         .then(
             (competitions) => {
-                console.log(competitions);
                 this.setState({
                     isLoaded: true,
                     competitions: competitions
@@ -38,13 +37,19 @@ export class CompetitionsContainer extends React.Component {
     render() {
         const { error, isLoaded, competitions } = this.state;
         return (
-            error ? <ErrorComponent error={error} /> :
-            !isLoaded ? <LoadingComponent /> : (
-                <div id="content">
-                    <h1>Competitions</h1>
-                    <CompetitionsList competitions={competitions}/>
-                </div>
-            )
+            <div id="content">
+            {
+                error ? <ErrorComponent error={error} /> :
+                !isLoaded ? <LoadingComponent /> : (
+                    <div>
+                        <h1>Competitions</h1>
+                        <CompetitionsList competitions={competitions}/>
+                    </div>
+                )
+            }
+            </div>
+            
+
         ); 
 
     }
