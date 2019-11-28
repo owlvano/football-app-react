@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { ErrorComponent, LoadingComponent } from './Helpers';
+import { ErrorComponent, LoadingComponent } from '../components';
 import { getCompetitions } from '../data/footballApi';
 
 

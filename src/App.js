@@ -1,6 +1,5 @@
 import React from 'react';
-import { CompetitionsContainer } from './components/Competitions';
-import { MatchesContainer } from './components/Matches';
+import { CompetitionsContainer, MatchesContainer } from './components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export const App = () => (
