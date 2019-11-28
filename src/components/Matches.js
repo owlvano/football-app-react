@@ -64,13 +64,16 @@ const MatchesList = props => {
 const MatchItem = props => {
     const match = props.match;
     const fullTime = match.score.fullTime;
+    const isScoreVisible = fullTime
+                           && fullTime.homeTeam !== null 
+                           && fullTime.awayTeam !== null;
     return (
         <li>
             <ul>
                 <li id="title">{ match.homeTeam.name } vs. { match.awayTeam.name }</li>
                 { match.score &&
                     <div>
-                        {fullTime && fullTime.homeTeam && fullTime.awayTeam &&
+                        { isScoreVisible &&
                             <li>Score: { fullTime.homeTeam } - { fullTime.awayTeam }</li>
                         }
                         <li>Winner: { MatchWinner(match) }</li>
